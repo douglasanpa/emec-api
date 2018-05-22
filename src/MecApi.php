@@ -22,7 +22,7 @@ class MecApi
     */
     function get_instituicoes($cod_municipio)
     {
-        include_once('./src/simple_html_dom.php');
+        include_once('simple_html_dom.php');
         $ch = curl_init();
         curl_setopt($ch, CURLOPT_URL, 'http://emec.mec.gov.br/emec/nova-index/listar-consulta-avancada/list/1000');
         curl_setopt($ch, CURLOPT_USERAGENT, 'Mozilla/5.0 (Windows NT 6.1; WOW64; rv:25.0) Gecko/20100101 Firefox/25.0');
@@ -33,26 +33,46 @@ class MecApi
         $buffer = curl_exec($ch);
         curl_close($ch);
 
-        $dom = new domDocument;
+        $dom = new \domDocument;
 
         @$dom->loadHTML($buffer);
         $dom->preserveWhiteSpace = false;
         $tables = $dom->getElementsByTagName('tr');
 
+        $array['cod_municipio'] = $cod_municipio;
+
+        $linha = 0;
+
+        foreach ($tables as $row)
+        {
+
+            $linha++;
+            if($linha>=2){
+
+                $cols = $row->getElementsByTagName('th');
+                foreach ($cols as $item){
+                    $array['header'][] = $item->nodeValue;
+                }
+                break;
+            }
+
+        }
+
+        $itens = array();
         foreach ($tables as $row)
         {
             $cols = $row->getElementsByTagName('td');
-            if($cols->length == 8)
-            {
-                $array[$cols->item(0)->nodeValue] = array(
-                    'IES' => $cols->item(1)->nodeValue,
-                    'organizacao' => $cols->item(2)->nodeValue,
-                    'categoria' => $cols->item(3)->nodeValue,
-                    'CI' => $cols->item(4)->nodeValue,
-                    'IGC' => $cols->item(5)->nodeValue,
-                    'situacao' => $cols->item(6)->nodeValue
-                );
+
+            $linha = array();
+            foreach ($cols as $item){
+                if($cols->length == count($array['header'])){
+                    $linha[] = $item->nodeValue;
+                }
             }
+            if(!empty($linha)){
+                $array['body'][] = $linha;
+            }
+
         }
         return $array;
     }
@@ -64,9 +84,9 @@ class MecApi
     {
         $html = file_get_contents('http://emec.mec.gov.br/emec/consulta-ies/listar-endereco/d96957f455f6405d14c6542552b0f6eb/'.base64_encode($cod).'/list/1000');
 
-        include_once('./src/simple_html_dom.php');
+        include_once('simple_html_dom.php');
 
-        $dom = new domDocument;
+        $dom = new \domDocument;
         @$dom->loadHTML($html);
         $dom->preserveWhiteSpace = false;
         $tables = $dom->getElementsByTagName('tbody');
@@ -91,7 +111,7 @@ class MecApi
     function get_instituicao_cursos($cod_endereco, $cod_instituicao)
     {
         $html = file_get_contents('http://emec.mec.gov.br/emec/consulta-ies/listar-curso-endereco/d96957f455f6405d14c6542552b0f6eb/'.base64_encode($cod_instituicao).'/aa547dc9e0377b562e2354d29f06085f/'.base64_encode($cod_endereco).'/list/1000');
-        include_once('./src/simple_html_dom.php');
+        include_once('simple_html_dom.php');
 
         $dom = new domDocument;
         @$dom->loadHTML($html);
