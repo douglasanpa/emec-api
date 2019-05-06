@@ -24,10 +24,10 @@ class Service
         foreach ($tables as $row) {
             $cols = $row->getElementsByTagName('td');
 
-            $body = Service::validateBodyElements($cols, $array);
+            $itens[] = Service::validateBodyElements($cols, $array);
         }
 
-        return $body;
+        return $itens;
     }
 
     private static function validateHeaderElements($line, $row)
