@@ -4,12 +4,12 @@ namespace App;
 
 class Service
 {
-    public static function mountHeaderInstitutions($tables)
+    public static function mountHeaderInstitutions($tables,$lines)
     {
         $line = 0;
         foreach ($tables as $row) {
             $line++;
-            if ($line >= 2) {
+            if ($line >= $lines) {
                 $header = Service::validateHeaderElements($line, $row);
                 break;
             }
