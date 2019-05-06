@@ -1,8 +1,8 @@
 <?php
 
-namespace App;
+namespace MecApi;
 
-use App\Service;
+use MecApi\Service;
 
 class MecApi
 {
