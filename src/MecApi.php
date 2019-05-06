@@ -41,6 +41,7 @@ class MecApi
 
     public function getTodasInstituicoesMunicipio($city)
     {
+        $city = str_replace(" ","+",$city);
         include_once('simple_html_dom.php');
         $ch = curl_init();
         curl_setopt($ch, CURLOPT_URL, "http://emec.mec.gov.br/emec/nova-index/gerar-arquivo-relatorio-consultar-simples?data%5BCONSULTA_SIMPLES%5D%5Bhid_template%5D=listar-consulta-simples-endereco&data%5BCONSULTA_SIMPLES%5D%5Bhid_order%5D=ies_endereco.no_campus+ASC&data%5BCONSULTA_SIMPLES%5D%5Bhid_no_cidade_simples%5D=&data%5BCONSULTA_SIMPLES%5D%5Bhid_no_regiao_simples%5D=&data%5BCONSULTA_SIMPLES%5D%5Bhid_no_pais_simples%5D=&data%5BCONSULTA_SIMPLES%5D%5Bhid_co_pais_simples%5D=&data%5BCONSULTA_SIMPLES%5D%5Bsel_tp_filtro%5D=ds_municipio&data%5BCONSULTA_SIMPLES%5D%5Btxt_ds_filtro%5D={$city}&data%5BCONSULTA_SIMPLES%5D%5Bsel_tp_filtro_indice%5D=&data%5BCONSULTA_SIMPLES%5D%5Bsel_tp_filtro_organizacao%5D=&data%5BCONSULTA_SIMPLES%5D%5Bsel_tp_filtro_cat_administrativa%5D=&data%5BCONSULTA_SIMPLES%5D%5Bsel_tp_filtro_natureza_juridica%5D=&data%5BCONSULTA_SIMPLES%5D%5Bsel_tp_filtro_st_gratuito%5D=&data%5BCONSULTA_SIMPLES%5D%5Bsel_co_area%5D=&captcha=&data[CONSULTA_SIMPLES][hid_format_ext]=xls&data[CONSULTA_SIMPLES][hid_st_nome_consulta]=endereco");
