@@ -8,9 +8,9 @@ class MecApi
 {
     public function getMunicipios($sigla)
     {
-        $str = file_get_contents("http://emec.mec.gov.br/emec/comum/json/selecionar-municipio/"
+        return file_get_contents("http://emec.mec.gov.br/emec/comum/json/selecionar-municipio/"
             . md5("sg_uf") . "/" . base64_encode($sigla));
-        return array_column(json_decode($str, true), 'co_municipio', 'ds_municipio');
+        
     }
 
     public function getInstituicoes($cod_uf, $cod_municipio)
