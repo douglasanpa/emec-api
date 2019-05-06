@@ -1,11 +1,11 @@
 {
-    "name": "viniciusilveira/emec-api",
-    "description": "PHP Api for collect data from e-mec webpage.",
+    "name": "douglasanpa/emec-api",
+    "description": "PHP Api for collect data from e-mec webpage. Forked from https://github.com/viniciusilveira/emec-api",
     "license": "MIT",
     "authors": [
         {
-            "name": "viniciusilveira",
-            "email": "viniciussilveira6@gmail.com"
+            "name": "douglasanpa",
+            "email": "douglasanpa@gmail.com"
         }
     ],
     "require": {},
