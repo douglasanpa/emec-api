@@ -32,6 +32,7 @@ class Service
 
     private static function validateHeaderElements($line, $row)
     {
+        $header = [];
         $cols = $row->getElementsByTagName('th');
         foreach ($cols as $item) {
             $header[] = $item->nodeValue;
