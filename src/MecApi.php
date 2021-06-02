@@ -26,15 +26,12 @@ class MecApi
         curl_setopt($ch, CURLOPT_POSTFIELDS, "data%5BCONSULTA_SIMPLES%5D%5Bhid_template%5D=listar-consulta-simples-endereco&data%5BCONSULTA_SIMPLES%5D%5Bhid_order%5D=ies_endereco.no_campus+ASC&data%5BCONSULTA_SIMPLES%5D%5Bhid_no_cidade_simples%5D=&data%5BCONSULTA_SIMPLES%5D%5Bhid_no_regiao_simples%5D=&data%5BCONSULTA_SIMPLES%5D%5Bhid_no_pais_simples%5D=&data%5BCONSULTA_SIMPLES%5D%5Bhid_co_pais_simples%5D=&data%5BCONSULTA_SIMPLES%5D%5Bsel_tp_filtro%5D=ds_municipio&data%5BCONSULTA_SIMPLES%5D%5Btxt_ds_filtro%5D={$municipio}&data%5BCONSULTA_SIMPLES%5D%5Bsel_tp_filtro_indice%5D=&data%5BCONSULTA_SIMPLES%5D%5Bsel_tp_filtro_organizacao%5D=&data%5BCONSULTA_SIMPLES%5D%5Bsel_tp_filtro_cat_administrativa%5D=&data%5BCONSULTA_SIMPLES%5D%5Bsel_tp_filtro_natureza_juridica%5D=&data%5BCONSULTA_SIMPLES%5D%5Bsel_tp_filtro_st_gratuito%5D=&data%5BCONSULTA_SIMPLES%5D%5Bsel_co_area%5D=&captcha=");
         
         $buffer = curl_exec($ch);
-        print_r(curl_getinfo($ch));
         curl_close($ch);
-        print_r($buffer);
         $dom = new \domDocument;
 
         @$dom->loadHTML($buffer);
         $dom->preserveWhiteSpace = false;
         $tables = $dom->getElementsByTagName('tr');
-        print_r($tables);
 
         $array['cod_uf'] = $estado;
         $array['cod_municipio'] = $municipio;
@@ -57,15 +54,12 @@ class MecApi
         curl_setopt($ch, CURLOPT_POSTFIELDS, "data%5BCONSULTA_AVANCADA%5D%5Bhid_template%5D=listar-consulta-avancada-ies&data%5BCONSULTA_AVANCADA%5D%5Bhid_order%5D=ies.no_ies+ASC&data%5BCONSULTA_AVANCADA%5D%5Bhid_no_cidade_avancada%5D=&data%5BCONSULTA_AVANCADA%5D%5Bhid_no_regiao_avancada%5D=&data%5BCONSULTA_AVANCADA%5D%5Bhid_no_pais_avancada%5D=&data%5BCONSULTA_AVANCADA%5D%5Bhid_co_pais_avancada%5D=&data%5BCONSULTA_AVANCADA%5D%5Brad_buscar_por%5D=IES&data%5BCONSULTA_AVANCADA%5D%5Btxt_no_ies%5D=&data%5BCONSULTA_AVANCADA%5D%5Btxt_no_curso%5D=&data%5BCONSULTA_AVANCADA%5D%5Btxt_no_especializacao%5D=&data%5BCONSULTA_AVANCADA%5D%5Bsel_co_area%5D=&data%5BCONSULTA_AVANCADA%5D%5Bsel_sg_uf%5D=MG&data%5BCONSULTA_AVANCADA%5D%5Bsel_co_municipio%5D=".$cod_municipio."&data%5BCONSULTA_AVANCADA%5D%5Bchk_tp_natureza_gn%5D%5B%5D=3&data%5BCONSULTA_AVANCADA%5D%5Bchk_tp_natureza_gn%5D%5B%5D=1&data%5BCONSULTA_AVANCADA%5D%5Bchk_tp_natureza_gn%5D%5B%5D=2&data%5BCONSULTA_AVANCADA%5D%5Bchk_tp_natureza_gn%5D%5B%5D=5&data%5BCONSULTA_AVANCADA%5D%5Bchk_tp_natureza_gn%5D%5B%5D=4&data%5BCONSULTA_AVANCADA%5D%5Bchk_tp_natureza_gn%5D%5B%5D=6&data%5BCONSULTA_AVANCADA%5D%5Bchk_tp_natureza_gn%5D%5B%5D=7&data%5BCONSULTA_AVANCADA%5D%5Bsel_st_gratuito%5D=&data%5BCONSULTA_AVANCADA%5D%5Bchk_tp_organizacao_gn%5D%5B%5D=10022%2C10024%2C10023%2C10027&data%5BCONSULTA_AVANCADA%5D%5Bchk_tp_organizacao_gn%5D%5B%5D=10019%2C10020%2C10021%2C10026&data%5BCONSULTA_AVANCADA%5D%5Bchk_tp_organizacao_gn%5D%5B%5D=10026%2C10019&data%5BCONSULTA_AVANCADA%5D%5Bchk_tp_organizacao_gn%5D%5B%5D=10028%2C10029&data%5BCONSULTA_AVANCADA%5D%5Bsel_no_indice_ies%5D=&data%5BCONSULTA_AVANCADA%5D%5Bsel_co_indice_ies%5D=&data%5BCONSULTA_AVANCADA%5D%5Bsel_no_indice_curso%5D=&data%5BCONSULTA_AVANCADA%5D%5Bsel_co_indice_curso%5D=&data%5BCONSULTA_AVANCADA%5D%5Bsel_co_situacao_funcionamento_ies%5D=10035&data%5BCONSULTA_AVANCADA%5D%5Bsel_co_situacao_funcionamento_curso%5D=9&data%5BCONSULTA_AVANCADA%5D%5Bsel_st_funcionamento_especializacao%5D=&captcha=");
         
         $buffer = curl_exec($ch);
-        print_r(curl_getinfo($ch));
         curl_close($ch);
-        print_r($buffer);
         $dom = new \domDocument;
 
         @$dom->loadHTML($buffer);
         $dom->preserveWhiteSpace = false;
         $tables = $dom->getElementsByTagName('tr');
-        print_r($tables);
 
         $array['cod_uf'] = $cod_uf;
         $array['cod_municipio'] = $cod_municipio;
