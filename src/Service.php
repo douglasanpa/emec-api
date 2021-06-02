@@ -6,6 +6,7 @@ class Service
 {
     public static function mountHeaderInstitutions($tables,$lines)
     {
+        $header = "";
         $line = 0;
         foreach ($tables as $row) {
             $line++;
